@@ -1,13 +1,16 @@
 package africa.semicolon.toDoApp.data.repositories;
 
+import africa.semicolon.toDoApp.data.models.Task;
 import africa.semicolon.toDoApp.data.models.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepositoryImpl implements UserRepository {
-    private List<User> users = new ArrayList<>();
-    private UserRepository userRepository;
+public class UserRepositoryImpl implements iUserRepository {
+    private final List<User> users = new ArrayList<>();
+//    private final ArrayList<Task> myTasks = new ArrayList<>();
+    private int count;
+
+    private iUserRepository userRepository;
     @Override
     public User save(User user) {
         user.setId(users.size() + 1);
@@ -31,6 +34,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User add(Task user1) { return null; }
+
+    @Override
     public User findById(int id) {
         for (var user : users) {
             if (user.getId() == id) {
@@ -40,17 +46,20 @@ public class UserRepositoryImpl implements UserRepository {
         return null;
     }
 
-//    public Optional<User> findById(String id) {
-//        for (var user : users) {
-//            if (user.getId() == id) {
-//                return user;
-//            }
-//        }
-//        return null;
+    @Override
+    public void addTask(Task user) {
+
+    }
     @Override
     public int count() {
         return users.size();
     }
+
+    @Override
+    public void deleteTask(User user1) { users.remove(user1); }
+
+    @Override
+    public User getTask(int index) { return users.get(index); }
 
     @Override
     public List<User> findByFirstName(String firstName) {
@@ -75,8 +84,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
     @Override
     public User findByEmail(String email) {
-        for (int i = 0; i < users.size(); i++) {
-            User user = users.get(i);
+        for (User user : users) {
             if (user.getEmail().equalsIgnoreCase(email)) {
                 return user;
             }

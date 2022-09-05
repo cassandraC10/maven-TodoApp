@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserRepositoryImplTest {
-    private UserRepository userRepository;
+    private iUserRepository userRepository;
     @BeforeEach
     public void setUp(){
         userRepository = new UserRepositoryImpl();

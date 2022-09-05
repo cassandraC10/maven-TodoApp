@@ -1,18 +1,13 @@
 package africa.semicolon.toDoApp.services;
 
-import africa.semicolon.toDoApp.data.models.Task;
-import africa.semicolon.toDoApp.data.models.User;
+import africa.semicolon.toDoApp.dtos.request.AddTaskRequest;
+import africa.semicolon.toDoApp.dtos.responses.AddTaskResponse;
 
 import java.util.List;
 
 public interface TaskServices {
-    public void addTask(String task, int date);
-    public void deleteTask(User user);
-    public void markAsDone(Task task);
-    public void markAsDoing(Task task);
-    Task findTask(); // i'm not sure.
 
-    User findById(String i);
+    AddTaskResponse addTask(AddTaskRequest taskRequest);
 
-    List<User> findByName(String name);
+//    public UpdateTaskResponse
 }
